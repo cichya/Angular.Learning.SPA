@@ -1,1 +1,1 @@
-Angular.Learning.SPA
+App for learning Angular 2+ with notes
