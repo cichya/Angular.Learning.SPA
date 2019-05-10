@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { RoutingComponent } from './routing/routing.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       NavComponent,
-      RoutingComponent
+      RoutingComponent,
+      HomeComponent
    ],
    imports: [
       AppRoutesModule,

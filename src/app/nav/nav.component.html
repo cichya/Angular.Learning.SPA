@@ -9,10 +9,10 @@
       <li class="nav-item">
         <div class="nav-link btn-group" dropdown triggers="hover" #dp="bs-dropdown">
           <a class="dropdown-toggle text-light" dropdownToggle>
-            subMenu
+            Basics
           </a>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic" (mouseleave)="dp.hide()">
-            <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+            <li role="menuitem"><a class="dropdown-item" routerLink="/routing" routerLinkActive="router-link-active" >Routing</a></li>
             <li class="divider dropdown-divider"></li>
             <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
             <!-- <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
