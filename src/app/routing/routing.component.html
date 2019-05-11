@@ -1,0 +1,32 @@
+Example routing module:
+
+<pre><code>
+import &#123; NgModule &#125; from '@angular/core';
+import &#123; Routes, RouterModule &#125; from '@angular/router';
+
+const appRoutes: Routes = [
+&#123; path: '', component: HomeComponent &#125;,
+&#123; path: 'users', component: UsersList &#125;
+]
+
+@NgModule(&#123;
+  imports: [RouterModule.ForRoot(appRoutes)],
+  exports: [RouterModule]
+  &#125;)
+
+export class MyRoutingModule() &#123;
+
+  &#125;
+</code></pre>
+
+Then in component.html use:
+
+<pre><code>
+    &lt;app-nav&gt;&lt;/app-nav&gt;
+    &lt;div class=&quot;container&quot;&gt;
+      &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-md-12&quot;&gt;
+          &lt;router-outlet&gt;&lt;/router-outlet&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+</code></pre>
