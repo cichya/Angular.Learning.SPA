@@ -1,11 +1,11 @@
 import { HomeComponent } from './home/home.component';
-import { RoutingComponent } from './routing/routing.component';
+import { BasicsRoutingComponent } from './basics-routing/basics-routing.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'routing', component: RoutingComponent }
+  { path: 'routing', component: BasicsRoutingComponent }
 ];
 
 @NgModule({
