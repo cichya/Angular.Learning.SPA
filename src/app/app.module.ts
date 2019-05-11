@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { BasicsRoutingComponent } from './basics-routing/basics-routing.component';
+import { BasicsRoutingComponent } from './features/basics-routing/basics-routing.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
