@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './core/nav/nav.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './core/home/home.component';
 
 @NgModule({
    declarations: [
