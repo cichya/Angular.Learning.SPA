@@ -1,21 +1,19 @@
+import { CoreModule } from './core/core.module';
 import { AppRoutesModule } from './routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NavComponent } from './core/nav/nav.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { HomeComponent } from './core/home/home.component';
 
 @NgModule({
    declarations: [
-      AppComponent,
-      NavComponent,
-      HomeComponent
+      AppComponent
    ],
    imports: [
       AppRoutesModule,
       BrowserModule,
+      CoreModule,
       BsDropdownModule.forRoot()
    ],
    providers: [],
