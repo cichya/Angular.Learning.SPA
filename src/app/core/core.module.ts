@@ -1,8 +1,8 @@
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppRoutesModule } from './../routes';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,7 @@ import { NgModule } from '@angular/core';
   ],
   imports: [
     AppRoutesModule,
-    BsDropdownModule.forRoot()
+    SharedModule
   ],
   exports: [
     AppRoutesModule,

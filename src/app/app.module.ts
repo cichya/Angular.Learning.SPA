@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
    declarations: [
@@ -14,7 +14,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
       AppRoutesModule,
       BrowserModule,
       CoreModule,
-      BsDropdownModule.forRoot()
+      SharedModule
    ],
    providers: [],
    bootstrap: [
