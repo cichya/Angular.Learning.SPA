@@ -1,3 +1,4 @@
+import { BasicsCoreSharedFeatureComponent } from './basics-core-shared-feature/basics-core-shared-feature.component';
 import { BasicsRoutingComponent } from './basics-routing/basics-routing.component';
 import { BasicsHomeComponent } from './basics-home/basics-home.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -5,7 +6,8 @@ import { NgModule } from '@angular/core';
 
 const basicsRoutes: Routes = [
   { path: '', component: BasicsHomeComponent, children: [
-      { path: 'routing', component: BasicsRoutingComponent }
+      { path: 'routing', component: BasicsRoutingComponent },
+      { path: 'coresharedfeature', component: BasicsCoreSharedFeatureComponent }
   ]}
 ];
 
