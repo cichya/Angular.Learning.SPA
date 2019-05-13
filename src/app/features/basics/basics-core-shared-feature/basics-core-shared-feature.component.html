@@ -1,3 +1,87 @@
-<p>
-  basics-core-shared-feature works!
-</p>
+<h2>Core</h2>
+
+<ul>
+  <li>Module</li>
+  <li>Global components: menu, footer, home as declarations</li>
+  <li>Services as providers</li>
+  <li>Main routing as import</li>
+  <li>Shared module as import</li>
+  <li>Main routing as exports</li>
+  <li>Global component (eg menu) as exports</li>
+</ul>
+
+<pre>
+  <code>
+      @NgModule(&#123;
+        declarations: [
+          NavComponent,
+          HomeComponent
+        ],
+        imports: [
+          AppRoutesModule,
+          SharedModule
+        ],
+        exports: [
+          AppRoutesModule,
+          NavComponent
+      ],
+        providers: []
+        &#125;)
+
+      export class CoreModule &#123;
+
+      &#125;
+  </code>
+</pre>
+
+<h2>Shared</h2>
+
+<ul>
+  <li>Module</li>
+  <li>3rd party modules</li>
+</ul>
+
+<pre>
+  <code>
+      @NgModule(&#123;
+        declarations: [],
+        imports: [
+          BsDropdownModule.forRoot()
+        ],
+        exports: [
+          BsDropdownModule
+        ]
+        &#125;)
+
+      export class SharedModule &#123;
+
+      &#125;
+  </code>
+</pre>
+
+<h2>Feature</h2>
+
+<ul>
+  <li>Components</li>
+  <li>Module which has all feature components as declarations</li>
+  <li>Feature routing as import</li>
+</ul>
+
+<pre>
+  <code>
+      @NgModule(&#123;
+        declarations: [
+          BasicsHomeComponent,
+          BasicsRoutingComponent,
+          BasicsCoreSharedFeatureComponent
+        ],
+        imports: [
+          BasicsRoutesModule
+        ]
+        &#125;)
+
+      export class BasicsModule &#123;
+
+        &#125;
+  </code>
+</pre>
