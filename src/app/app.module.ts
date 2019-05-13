@@ -1,24 +1,20 @@
+import { CoreModule } from './core/core.module';
 import { AppRoutesModule } from './routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { RoutingComponent } from './routing/routing.component';
-import { HomeComponent } from './home/home.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
    declarations: [
-      AppComponent,
-      NavComponent,
-      RoutingComponent,
-      HomeComponent
+      AppComponent
    ],
    imports: [
       AppRoutesModule,
       BrowserModule,
-      BsDropdownModule.forRoot()
+      CoreModule,
+      SharedModule
    ],
    providers: [],
    bootstrap: [

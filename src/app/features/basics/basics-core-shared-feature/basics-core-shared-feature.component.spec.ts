@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { RoutingComponent } from './routing.component';
+import { BasicsCoreSharedFeatureComponent } from './basics-core-shared-feature.component';
 
-describe('RoutingComponent', () => {
-  let component: RoutingComponent;
-  let fixture: ComponentFixture<RoutingComponent>;
+describe('BasicsCoreSharedFeatureComponent', () => {
+  let component: BasicsCoreSharedFeatureComponent;
+  let fixture: ComponentFixture<BasicsCoreSharedFeatureComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RoutingComponent ]
+      declarations: [ BasicsCoreSharedFeatureComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RoutingComponent);
+    fixture = TestBed.createComponent(BasicsCoreSharedFeatureComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
