@@ -1,3 +1,4 @@
+import { RxjsService } from './rxjs.service';
 import { AppRoutesModule } from './../routes';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
@@ -17,7 +18,9 @@ import { SharedModule } from '../shared/shared.module';
     AppRoutesModule,
     NavComponent
 ],
-  providers: []
+  providers: [
+    RxjsService
+  ]
 })
 
 export class CoreModule {
