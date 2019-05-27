@@ -1,3 +1,4 @@
+import { ComponentCommunicationService } from './component.communication.service';
 import { RxjsService } from './rxjs.service';
 import { AppRoutesModule } from './../routes';
 import { HomeComponent } from './home/home.component';
@@ -19,7 +20,8 @@ import { SharedModule } from '../shared/shared.module';
     NavComponent
 ],
   providers: [
-    RxjsService
+    RxjsService,
+    ComponentCommunicationService
   ]
 })
 

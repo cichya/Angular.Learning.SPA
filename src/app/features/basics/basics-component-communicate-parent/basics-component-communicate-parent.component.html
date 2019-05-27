@@ -1,0 +1,26 @@
+<p>
+  parent component works!
+  this is property from child component (Output, EventEmitter): {{this.propertyFromChildComponent}}
+</p>
+<br>
+ViewChild:
+<br>
+Property from by ViewChild: {{this.propertyFromChildComponentViewChild}}
+<br>
+<br>
+ref:
+<br>
+<button (click)="child.prepareChildPropertyRef()">Run</button>
+<br>
+Property from child by ref: {{this.child.childPropertyRef}}
+<br>
+<br>
+<app-basics-component-communicate-child #child
+  [inputChildProperty]="this.propertyForChildComponent"
+  (outputChildProperty)="fromChildPropertyChange($event)">
+</app-basics-component-communicate-child>
+<br>
+Communication between two components by service
+<br>
+<app-basics-component-communicate-child-two>
+</app-basics-component-communicate-child-two>
