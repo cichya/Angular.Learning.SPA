@@ -4,7 +4,8 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'basics', loadChildren: './features/basics/basics.module#BasicsModule' }
+  { path: 'basics', loadChildren: './features/basics/basics.module#BasicsModule' },
+  { path: 'rxjs', loadChildren: './features/rxjs/rxjs.module#RxjsModule'}
 ];
 
 @NgModule({
