@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { of, Observable, from } from 'rxjs';
+import { of, Observable, from, fromEvent } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -11,6 +11,8 @@ export class RxjsOperatorsComponent implements OnInit {
   dataMapOp: number[];
   dataFromOp: number;
   dataFromPromiseOp: number[];
+  dataFromEventCounter = 0;
+  // dataFromEventCounter: boolean = ;
 
   constructor() { }
 
@@ -18,6 +20,7 @@ export class RxjsOperatorsComponent implements OnInit {
     this.mapOperator();
     this.fromOperator();
     this.fromOperatorPromise();
+    this.fromEventOperator();
   }
 
   mapOperator() {
@@ -35,6 +38,12 @@ export class RxjsOperatorsComponent implements OnInit {
   fromOperatorPromise() {
     this.getDataFromPromise().subscribe((data: number[]) => {
       this.dataFromPromiseOp = data;
+    });
+  }
+
+  fromEventOperator() {
+    this.getDataFromEvent().subscribe((e: Event) => {
+      this.dataFromEventCounter += 1;
     });
   }
 
@@ -66,5 +75,9 @@ export class RxjsOperatorsComponent implements OnInit {
     const promises: Promise<number[]> = new Promise(resolve => resolve(data));
 
     return from(promises);
-}
+  }
+
+  getDataFromEvent(): Observable<Event> {
+    return fromEvent(document, 'click');
+  }
 }
