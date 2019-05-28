@@ -1,3 +1,21 @@
-<p>
-  rxjs-operators works!
-</p>
+<h2>Rxjs Operators</h2>
+<br>
+<h3>Pipe</h3>
+<br>
+Pipe operator is using for combine multiple operators
+<br>
+<pre>
+  <code>
+    of(1,2,3).pipe(
+  map(x => x + 1),
+  filter(x => x > 2)
+);
+  </code>
+</pre>
+<h3>Map</h3>
+
+Map operator allows transform data:
+<br>
+<div *ngFor="let item of this.dataMapOp">
+  {{item}}
+</div>

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { RxjsOperatorsComponent } from './rxjs-operators/rxjs-operators.component';
 import { RxjsShortcutComponent } from './rxjs-shortcut/rxjs-shortcut.component';
 import { RxjsSubscribeComponent } from './rxjs-subscribe/rxjs-subscribe.component';
@@ -13,7 +14,8 @@ import { NgModule } from '@angular/core';
     RxjsOperatorsComponent
   ],
   imports: [
-    RxjsRoutesModule
+    RxjsRoutesModule,
+    CommonModule
   ]
 })
 
