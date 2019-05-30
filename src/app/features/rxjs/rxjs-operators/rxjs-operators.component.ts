@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge } from 'rxjs';
-import { map, mapTo } from 'rxjs/operators';
+import { map, mapTo, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -29,6 +29,7 @@ export class RxjsOperatorsComponent implements OnInit {
   fourthInterval$: Observable<number>;
 
   mergeDataOp: number;
+  startWithDataOp: number;
 
   constructor() { }
 
@@ -45,6 +46,8 @@ export class RxjsOperatorsComponent implements OnInit {
     this.thirdnterval$ = interval(1500);
     this.fourthInterval$ = interval(1000);
     this.mergeOp();
+
+    this.startWithOp();
   }
 
   mapOperator() {
@@ -96,6 +99,12 @@ export class RxjsOperatorsComponent implements OnInit {
     });
   }
 
+  startWithOp() {
+    this.getDataFromStartWith().subscribe((data: number) => {
+      this.startWithDataOp = data;
+    });
+  }
+
   getDataMap(): Observable<number[]> {
     const data = [1, 2, 3, 4, 5];
 
@@ -140,5 +149,9 @@ export class RxjsOperatorsComponent implements OnInit {
       this.secontInterval$.pipe(mapTo(2)),
       this.thirdnterval$.pipe(mapTo(3)),
       this.fourthInterval$.pipe(mapTo(4)));
+  }
+
+  getDataFromStartWith(): Observable<number> {
+    return of(1, 2, 3).pipe(startWith(0));
   }
 }
