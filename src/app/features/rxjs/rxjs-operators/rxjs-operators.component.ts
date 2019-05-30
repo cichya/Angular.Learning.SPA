@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge, zip } from 'rxjs';
-import { map, mapTo, startWith, withLatestFrom, delay, debounceTime } from 'rxjs/operators';
+import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -39,6 +39,7 @@ export class RxjsOperatorsComponent implements OnInit {
   zipDataOp: string[];
 
   dataDebounceTimeOp: string;
+  dataDistinctUntilChangedOp: number;
 
   constructor() { }
 
@@ -65,6 +66,7 @@ export class RxjsOperatorsComponent implements OnInit {
     this.fromZipOp();
 
     this.fromDebounceTimeOp();
+    this.fromDataDistinctUntilChanged();
   }
 
   mapOperator() {
@@ -140,6 +142,12 @@ export class RxjsOperatorsComponent implements OnInit {
     });
   }
 
+  fromDataDistinctUntilChanged() {
+    this.getDataDistinctUntilChanged().subscribe((data: number) => {
+      this.dataDistinctUntilChangedOp = data;
+    });
+  }
+
   getDataMap(): Observable<number[]> {
     const data = [1, 2, 3, 4, 5];
 
@@ -211,7 +219,7 @@ export class RxjsOperatorsComponent implements OnInit {
       sourceFour.pipe(delay(4000)));
   }
 
-  getDataDebounceTime() {
+  getDataDebounceTime(): Observable<string> {
     const sourceOne = of('source1');
     const sourceTwo = of('source2');
     const sourceThree = of('source3');
@@ -221,5 +229,9 @@ export class RxjsOperatorsComponent implements OnInit {
       sourceTwo.pipe(delay(1000)),
       sourceThree.pipe(delay(2000)),
       sourceFour.pipe(delay(4000))).pipe(debounceTime(3000));
+  }
+
+  getDataDistinctUntilChanged(): Observable<number> {
+    return of(1, 1, 2, 3, 3, 4, 5).pipe(distinctUntilChanged());
   }
 }
