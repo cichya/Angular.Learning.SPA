@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge } from 'rxjs';
-import { map, mapTo, startWith } from 'rxjs/operators';
+import { map, mapTo, startWith, withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -31,6 +31,11 @@ export class RxjsOperatorsComponent implements OnInit {
   mergeDataOp: number;
   startWithDataOp: number;
 
+  firstLatestFromInterval$: Observable<number>;
+  secondLatestFromInterval$: Observable<number>;
+
+  withLatestFromOp: string;
+
   constructor() { }
 
   ngOnInit() {
@@ -48,6 +53,10 @@ export class RxjsOperatorsComponent implements OnInit {
     this.mergeOp();
 
     this.startWithOp();
+
+    this.firstLatestFromInterval$ = interval(5000);
+    this.secondLatestFromInterval$ = interval(1000);
+    this.fromWithLatestFromOp();
   }
 
   mapOperator() {
@@ -105,6 +114,12 @@ export class RxjsOperatorsComponent implements OnInit {
     });
   }
 
+  fromWithLatestFromOp() {
+    this.getDataFromWithLatestFrom().subscribe((data: string) => {
+      this.withLatestFromOp = data;
+    });
+  }
+
   getDataMap(): Observable<number[]> {
     const data = [1, 2, 3, 4, 5];
 
@@ -153,5 +168,14 @@ export class RxjsOperatorsComponent implements OnInit {
 
   getDataFromStartWith(): Observable<number> {
     return of(1, 2, 3).pipe(startWith(0));
+  }
+
+  getDataFromWithLatestFrom(): Observable<string> {
+    return this.firstLatestFromInterval$.pipe(
+      withLatestFrom(this.secondLatestFromInterval$),
+      map(([first, second]) => {
+        return `First source (5s): ${first} Second (1s): ${second}`;
+      })
+    );
   }
 }
