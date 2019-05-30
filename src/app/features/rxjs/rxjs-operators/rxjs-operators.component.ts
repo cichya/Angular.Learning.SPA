@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge, zip } from 'rxjs';
-import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged, filter, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -41,6 +41,7 @@ export class RxjsOperatorsComponent implements OnInit {
   dataDebounceTimeOp: string;
   dataDistinctUntilChangedOp: number;
   dataFilterOp: number;
+  dataTakeOp: number;
 
   constructor() { }
 
@@ -69,6 +70,7 @@ export class RxjsOperatorsComponent implements OnInit {
     this.fromDebounceTimeOp();
     this.fromDataDistinctUntilChanged();
     this.fromDataFilter();
+    this.fromDataTake();
   }
 
   mapOperator() {
@@ -153,6 +155,12 @@ export class RxjsOperatorsComponent implements OnInit {
   fromDataFilter() {
     this.getDataFilter().subscribe((data: number) => {
       this.dataFilterOp = data;
+    });
+  }
+
+  fromDataTake() {
+    this.getTake().subscribe((data: number) => {
+      this.dataTakeOp = data;
     });
   }
 
@@ -245,5 +253,9 @@ export class RxjsOperatorsComponent implements OnInit {
 
   getDataFilter(): Observable<number> {
     return of(1, 2, 3, 4, 5, 6).pipe(filter(x => x % 2 === 1));
+  }
+
+  getTake(): Observable<number> {
+    return of(1, 2, 3, 4, 5, 6).pipe(take(3));
   }
 }
