@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { of, Observable, from, fromEvent, timer, combineLatest, concat } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge } from 'rxjs';
+import { map, mapTo } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -23,6 +23,13 @@ export class RxjsOperatorsComponent implements OnInit {
 
   dataConcatOp: number;
 
+  firstInterval$: Observable<number>;
+  secontInterval$: Observable<number>;
+  thirdnterval$: Observable<number>;
+  fourthInterval$: Observable<number>;
+
+  mergeDataOp: number;
+
   constructor() { }
 
   ngOnInit() {
@@ -32,6 +39,12 @@ export class RxjsOperatorsComponent implements OnInit {
     this.fromEventOperator();
     this.combineLatest();
     this.concatOp();
+
+    this.firstInterval$ = interval(2500);
+    this.secontInterval$ = interval(2000);
+    this.thirdnterval$ = interval(1500);
+    this.fourthInterval$ = interval(1000);
+    this.mergeOp();
   }
 
   mapOperator() {
@@ -77,6 +90,12 @@ export class RxjsOperatorsComponent implements OnInit {
       });
   }
 
+  mergeOp() {
+    this.getDataFromMerge().subscribe((data: number) => {
+      this.mergeDataOp = data;
+    });
+  }
+
   getDataMap(): Observable<number[]> {
     const data = [1, 2, 3, 4, 5];
 
@@ -113,5 +132,13 @@ export class RxjsOperatorsComponent implements OnInit {
 
   getDataFromCombineLatest(): Observable<[number, number, number]> {
     return combineLatest(this.timerOne$, this.timerTwo$, this.timerThree$);
+  }
+
+  getDataFromMerge(): Observable<number> {
+    return merge(
+      this.firstInterval$.pipe(mapTo(1)),
+      this.secontInterval$.pipe(mapTo(2)),
+      this.thirdnterval$.pipe(mapTo(3)),
+      this.fourthInterval$.pipe(mapTo(4)));
   }
 }
