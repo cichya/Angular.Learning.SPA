@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge, zip } from 'rxjs';
-import { map, mapTo, startWith, withLatestFrom, delay } from 'rxjs/operators';
+import { map, mapTo, startWith, withLatestFrom, delay, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -38,6 +38,8 @@ export class RxjsOperatorsComponent implements OnInit {
 
   zipDataOp: string[];
 
+  dataDebounceTimeOp: string;
+
   constructor() { }
 
   ngOnInit() {
@@ -61,6 +63,8 @@ export class RxjsOperatorsComponent implements OnInit {
     this.fromWithLatestFromOp();
 
     this.fromZipOp();
+
+    this.fromDebounceTimeOp();
   }
 
   mapOperator() {
@@ -127,6 +131,12 @@ export class RxjsOperatorsComponent implements OnInit {
   fromZipOp() {
     this.getDataFromZip().subscribe((data: string[]) => {
       this.zipDataOp = data;
+    });
+  }
+
+  fromDebounceTimeOp() {
+    this.getDataDebounceTime().subscribe((data: string) => {
+      this.dataDebounceTimeOp = data;
     });
   }
 
@@ -199,5 +209,17 @@ export class RxjsOperatorsComponent implements OnInit {
       sourceTwo.pipe(delay(1000)),
       sourceThree.pipe(delay(2000)),
       sourceFour.pipe(delay(4000)));
+  }
+
+  getDataDebounceTime() {
+    const sourceOne = of('source1');
+    const sourceTwo = of('source2');
+    const sourceThree = of('source3');
+    const sourceFour = of('source4');
+
+    return merge(sourceOne,
+      sourceTwo.pipe(delay(1000)),
+      sourceThree.pipe(delay(2000)),
+      sourceFour.pipe(delay(4000))).pipe(debounceTime(3000));
   }
 }

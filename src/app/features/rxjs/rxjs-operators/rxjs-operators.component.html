@@ -68,7 +68,7 @@ Concat three observables: {{this.dataConcatOp}}
 <br>
 <h3>Merge</h3>
 <br>
-Merge is uded to turn multiple observables into single
+Merge is used to turn multiple observables into single
 <br>
 Merge three observables: {{this.mergeDataOp}}
 <br>
@@ -93,3 +93,9 @@ Four string values from observables:
 <div *ngFor="let item of this.zipDataOp">
   {{item}}
 </div>
+<br>
+<h3>debounceTime</h3>
+<br>
+Discard observables which emit less than specified time
+<br>
+Only source 4: {{this.dataDebounceTimeOp}}
