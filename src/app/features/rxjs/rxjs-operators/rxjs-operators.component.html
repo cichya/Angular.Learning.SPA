@@ -83,3 +83,13 @@ Sequence start at 0: {{this.startWithDataOp}}
 Add observable to another observable at the last
 <br>
 Combine second sequence: {{this.withLatestFromOp}}
+<br>
+<h3>Zip</h3>
+<br>
+After emit all observables return they as array
+<br>
+Four string values from observables:
+<br>
+<div *ngFor="let item of this.zipDataOp">
+  {{item}}
+</div>
