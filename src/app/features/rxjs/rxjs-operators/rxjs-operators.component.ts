@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { of, Observable, from, fromEvent } from 'rxjs';
+import { of, Observable, from, fromEvent, timer, combineLatest, concat } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,16 @@ export class RxjsOperatorsComponent implements OnInit {
   dataFromOp: number;
   dataFromPromiseOp: number[];
   dataFromEventCounter = 0;
-  // dataFromEventCounter: boolean = ;
+
+  timerOne$: Observable<number> = timer(1000, 4000);
+  timerTwo$: Observable<number> = timer(2000, 4000);
+  timerThree$: Observable<number> = timer(13000, 4000);
+
+  timerOne: number;
+  timerTwo: number;
+  timerThree: number;
+
+  dataConcatOp: number;
 
   constructor() { }
 
@@ -21,6 +30,8 @@ export class RxjsOperatorsComponent implements OnInit {
     this.fromOperator();
     this.fromOperatorPromise();
     this.fromEventOperator();
+    this.combineLatest();
+    this.concatOp();
   }
 
   mapOperator() {
@@ -45,6 +56,25 @@ export class RxjsOperatorsComponent implements OnInit {
     this.getDataFromEvent().subscribe((e: Event) => {
       this.dataFromEventCounter += 1;
     });
+  }
+
+  combineLatest() {
+    this.getDataFromCombineLatest()
+      .subscribe(([timerValOne, timerValTwo, timerValThree]) => {
+        this.timerOne = timerValOne;
+        this.timerTwo = timerValTwo;
+        this.timerThree = timerValThree;
+      });
+  }
+
+  concatOp() {
+    concat(
+      of(1, 2, 3),
+      of(4, 5, 6),
+      of(7, 8, 9))
+      .subscribe((data: number) => {
+        this.dataConcatOp = data;
+      });
   }
 
   getDataMap(): Observable<number[]> {
@@ -79,5 +109,9 @@ export class RxjsOperatorsComponent implements OnInit {
 
   getDataFromEvent(): Observable<Event> {
     return fromEvent(document, 'click');
+  }
+
+  getDataFromCombineLatest(): Observable<[number, number, number]> {
+    return combineLatest(this.timerOne$, this.timerTwo$, this.timerThree$);
   }
 }

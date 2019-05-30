@@ -48,3 +48,20 @@ Map operator allows transform data:
 <div *ngFor="let item of this.dataMapOp">
   {{item}}
 </div>
+
+<br>
+<h3>combineLatest</h3>
+<br>
+Is used when we have multiple, long lived observables which depends on eachother for operations.
+<br>
+Timer one: {{this.timerOne}}
+<br>
+Timer two: {{this.timerTwo}}
+<br>
+Timer three: {{this.timerThree}}
+<br>
+<h3>Concat</h3>
+<br>
+Concat is used to subscribing observables in order
+<br>
+Concat three observables: {{this.dataConcatOp}}
