@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge, zip } from 'rxjs';
 // tslint:disable-next-line:max-line-length
-import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged, filter, take, takeUntil, bufferTime,  } from 'rxjs/operators';
+import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged, filter, take, takeUntil, bufferTime, mergeMap,  } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -45,6 +45,7 @@ export class RxjsOperatorsComponent implements OnInit {
   dataTakeOp: number;
   dataTakeUtilOp: number;
   dataBufferTime: number[];
+  dataMergeMap: string;
 
   constructor() { }
 
@@ -76,6 +77,7 @@ export class RxjsOperatorsComponent implements OnInit {
     this.fromDataTake();
     this.fromDataTakeUtil();
     this.fromBufferTime();
+    this.fromMergeMap();
   }
 
   mapOperator() {
@@ -178,6 +180,12 @@ export class RxjsOperatorsComponent implements OnInit {
   fromBufferTime() {
     this.getBufferTime().subscribe((data: number[]) => {
       this.dataBufferTime = data;
+    });
+  }
+
+  fromMergeMap() {
+    this.getMergeMap().subscribe((data: string) => {
+      this.dataMergeMap = data;
     });
   }
 
@@ -287,5 +295,11 @@ export class RxjsOperatorsComponent implements OnInit {
     const source: Observable<number> = interval(500);
 
     return source.pipe(bufferTime(2000));
+  }
+
+  getMergeMap(): Observable<string> {
+    return of('my value').pipe(mergeMap((data: string) => {
+      return of(`value: ${data}`);
+    }));
   }
 }
