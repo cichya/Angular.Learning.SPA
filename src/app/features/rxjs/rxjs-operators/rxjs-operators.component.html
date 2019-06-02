@@ -125,3 +125,12 @@ The last will be 3: {{dataTakeOp}}
 Emit until other observable emits
 <br>
 Emit: {{this.dataTakeUtilOp}}
+<br>
+<h3>bufferTime</h3>
+<br>
+Emit values until time has passed
+<br>
+Emitted values:
+<div *ngFor="let item of this.dataBufferTime">
+  emitted value: {{item}}
+</div>

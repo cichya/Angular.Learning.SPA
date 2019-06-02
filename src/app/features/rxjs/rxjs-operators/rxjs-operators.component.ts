@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge, zip } from 'rxjs';
-import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged, filter, take, takeUntil } from 'rxjs/operators';
+// tslint:disable-next-line:max-line-length
+import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged, filter, take, takeUntil, bufferTime,  } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -43,6 +44,7 @@ export class RxjsOperatorsComponent implements OnInit {
   dataFilterOp: number;
   dataTakeOp: number;
   dataTakeUtilOp: number;
+  dataBufferTime: number[];
 
   constructor() { }
 
@@ -73,6 +75,7 @@ export class RxjsOperatorsComponent implements OnInit {
     this.fromDataFilter();
     this.fromDataTake();
     this.fromDataTakeUtil();
+    this.fromBufferTime();
   }
 
   mapOperator() {
@@ -169,6 +172,12 @@ export class RxjsOperatorsComponent implements OnInit {
   fromDataTakeUtil() {
     this.getTakeUntil().subscribe((data: number) => {
       this.dataTakeUtilOp = data;
+    });
+  }
+
+  fromBufferTime() {
+    this.getBufferTime().subscribe((data: number[]) => {
+      this.dataBufferTime = data;
     });
   }
 
@@ -272,5 +281,11 @@ export class RxjsOperatorsComponent implements OnInit {
     const timer$ = timer(5000);
 
     return source.pipe(takeUntil(timer$));
+  }
+
+  getBufferTime(): Observable<number[]> {
+    const source: Observable<number> = interval(500);
+
+    return source.pipe(bufferTime(2000));
   }
 }
