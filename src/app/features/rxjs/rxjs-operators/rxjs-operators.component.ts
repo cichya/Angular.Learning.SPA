@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge, zip } from 'rxjs';
 // tslint:disable-next-line:max-line-length
-import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged, filter, take, takeUntil, bufferTime, mergeMap, concatMap, scan, switchMap,  } from 'rxjs/operators';
+import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged, filter, take, takeUntil, bufferTime, mergeMap, concatMap, scan, switchMap, tap,  } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -50,6 +50,10 @@ export class RxjsOperatorsComponent implements OnInit {
   dataScan: number;
   dataSwitchMap: number;
 
+  dataTap: number;
+  dataTapBefore: number;
+  dataTapAfter: number;
+
   constructor() { }
 
   ngOnInit() {
@@ -84,6 +88,7 @@ export class RxjsOperatorsComponent implements OnInit {
     this.fromConcatMap();
     this.fromScan();
     this.fromSwitchMap();
+    this.fromTap();
   }
 
   mapOperator() {
@@ -208,9 +213,13 @@ export class RxjsOperatorsComponent implements OnInit {
   }
 
   fromSwitchMap() {
-    return this.getSwitchMap().subscribe((data: number) => {
+    this.getSwitchMap().subscribe((data: number) => {
       this.dataSwitchMap = data;
     });
+  }
+
+  fromTap() {
+    this.getTap().subscribe((data: number) => {});
   }
 
   getDataMap(): Observable<number[]> {
@@ -341,5 +350,12 @@ export class RxjsOperatorsComponent implements OnInit {
 
   getSwitchMap(): Observable<number> {
     return fromEvent(document, 'click').pipe(switchMap(() => interval(1000)));
+  }
+
+  getTap(): Observable<number> {
+    return of(1, 2, 3, 4, 5).pipe(
+      tap((data: number) => this.dataTapBefore = data),
+      map((data: number) => data + 10),
+      tap((data: number) => this.dataTapAfter = data));
   }
 }
