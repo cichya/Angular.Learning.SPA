@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge, zip } from 'rxjs';
+import { of, Observable, from, fromEvent, timer, combineLatest, concat, interval, merge, zip, Subscription } from 'rxjs';
 // tslint:disable-next-line:max-line-length
-import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged, filter, take, takeUntil, bufferTime, mergeMap, concatMap, scan, switchMap, tap,  } from 'rxjs/operators';
+import { map, mapTo, startWith, withLatestFrom, delay, debounceTime, distinctUntilChanged, filter, take, takeUntil, bufferTime, mergeMap, concatMap, scan, switchMap, tap, shareReplay, share,  } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operators',
@@ -54,6 +54,8 @@ export class RxjsOperatorsComponent implements OnInit {
   dataTapBefore: number;
   dataTapAfter: number;
 
+  shareReplayObs$: Observable<string>;
+
   constructor() { }
 
   ngOnInit() {
@@ -89,6 +91,15 @@ export class RxjsOperatorsComponent implements OnInit {
     this.fromScan();
     this.fromSwitchMap();
     this.fromTap();
+
+    this.shareReplayObs$ = this.getShareReplay();
+
+    this.shareReplayObs$.subscribe((data: string) => {
+      console.log(data);
+    });
+    this.shareReplayObs$.subscribe((data: string) => {
+      console.log(data);
+    });
   }
 
   mapOperator() {
@@ -357,5 +368,9 @@ export class RxjsOperatorsComponent implements OnInit {
       tap((data: number) => this.dataTapBefore = data),
       map((data: number) => data + 10),
       tap((data: number) => this.dataTapAfter = data));
+  }
+
+  getShareReplay(): Observable<string> {
+    return timer(1000).pipe(tap(() => console.log('Only one')), mapTo('LogValue'), share());
   }
 }
