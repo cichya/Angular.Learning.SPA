@@ -38,15 +38,19 @@
               <li role="menuitem"><a class="dropdown-item" routerLink="rxjs/subscribe" routerLinkActive="router-link-active" >Subscribe</a></li>
               <li role="menuitem"><a class="dropdown-item" routerLink="rxjs/operators" routerLinkActive="router-link-active" >Operators</a></li>
               <li class="divider dropdown-divider"></li>
-              <!-- <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
-                  <a dropdownToggle class="dropdown-item dropdown-toggle" (click)="false">Hover me for nested dropdown <span
-                      class="caret"></span></a>
-                  <ul *dropdownMenu class="dropdown-menu" role="menu">
-                    <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action</a></li>
-                    <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action1</a></li>
-                    <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action2</a></li>
-                  </ul>
-                </li> -->
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link btn-group" dropdown triggers="hover" #dp="bs-dropdown">
+            <a class="dropdown-toggle text-light" dropdownToggle>
+              Ngrx
+            </a>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic" (mouseleave)="dp.hide()">
+              <li role="menuitem"><a class="dropdown-item" routerLink="ngrx/about">About</a></li>
+              <li role="menuitem"><a class="dropdown-item" routerLink="ngrx/redux" routerLinkActive="router-link-active" >Redux</a></li>
+              <li role="menuitem"><a class="dropdown-item" routerLink="ngrx/effects" routerLinkActive="router-link-active" >Effects</a></li>
+              <li class="divider dropdown-divider"></li>
             </ul>
           </div>
         </li>
