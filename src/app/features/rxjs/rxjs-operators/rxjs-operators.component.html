@@ -1,0 +1,179 @@
+<h2>Rxjs Operators</h2>
+<br>
+<h3>From operator</h3>
+<br>
+<ul>
+  <li>
+    Observable from array
+    <br>
+    check this: {{this.dataFromOp}}
+  </li>
+  <li>
+    Observable from promise:
+    <div *ngFor="let item of this.dataFromPromiseOp">
+      {{item}}
+    </div>
+    <br>
+  </li>
+  <li>
+    Observable from collection
+  </li>
+  <li>
+    Observable from string
+  </li>
+</ul>
+<br>
+<h3>FromEvent operator</h3>
+<br>
+Turn event into observable
+<br>
+On document click increase counter: {{this.dataFromEventCounter}}
+<br>
+<h3>Pipe</h3>
+<br>
+Pipe operator is using for combine multiple operators
+<br>
+<pre>
+  <code>
+    of(1,2,3).pipe(
+  map(x => x + 1),
+  filter(x => x > 2)
+);
+  </code>
+</pre>
+<h3>Map</h3>
+
+Map operator allows transform data:
+<br>
+<div *ngFor="let item of this.dataMapOp">
+  {{item}}
+</div>
+
+<br>
+<h3>combineLatest</h3>
+<br>
+Is used when we have multiple, long lived observables which depends on eachother for operations.
+<br>
+Timer one: {{this.timerOne}}
+<br>
+Timer two: {{this.timerTwo}}
+<br>
+Timer three: {{this.timerThree}}
+<br>
+<h3>Concat</h3>
+<br>
+Concat is used to subscribing observables in order
+<br>
+Concat three observables: {{this.dataConcatOp}}
+<br>
+<h3>Merge</h3>
+<br>
+Merge is used to turn multiple observables into single
+<br>
+Merge three observables: {{this.mergeDataOp}}
+<br>
+<h3>startWith</h3>
+<br>
+Start observable with given value
+<br>
+Sequence start at 0: {{this.startWithDataOp}}
+<br>
+<h3>withLatestFrom</h3>
+<br>
+Add observable to another observable at the last
+<br>
+Combine second sequence: {{this.withLatestFromOp}}
+<br>
+<h3>Zip</h3>
+<br>
+After emit all observables return they as array
+<br>
+Four string values from observables:
+<br>
+<div *ngFor="let item of this.zipDataOp">
+  {{item}}
+</div>
+<br>
+<h3>debounceTime</h3>
+<br>
+Discard observables which emit less than specified time
+<br>
+Only source 4: {{this.dataDebounceTimeOp}}
+<br>
+<h3>distinctUntilChanged</h3>
+<br>
+Emit distinct values
+<br>
+The last one will be 5: {{this.dataDistinctUntilChangedOp}}
+<br>
+<h3>Filter</h3>
+<br>
+Emit values which pass condition
+<br>
+only odd values {{this.dataFilterOp}}
+<br>
+<h3>Take</h3>
+<br>
+Emit only specific number values before completing
+<br>
+The last will be 3: {{dataTakeOp}}
+<br>
+<h3>takeUtil</h3>
+<br>
+<h3>takeUntil</h3>
+<br>
+Emit until other observable emits
+<br>
+Emit: {{this.dataTakeUtilOp}}
+<br>
+<h3>bufferTime</h3>
+<br>
+Emit values until time has passed
+<br>
+Emitted values:
+<div *ngFor="let item of this.dataBufferTime">
+  emitted value: {{item}}
+</div>
+<br>
+<h3>MergeMap or FlatMap</h3>
+<br>
+Map to observable and emit values
+<br>
+MergeMap emitted values: {{this.dataMergeMap}}
+<br>
+<h3>concatMap</h3>
+<br>
+Map values to observable, subscribe and emit in order
+<br>
+delayed values: {{this.dataConcatMap}}
+<br>
+<h3>Scan</h3>
+<br>
+Is used to accumulating
+<br>
+Accumulated values: {{dataScan}}
+<br>
+<h3>switchMap</h3>
+<br>
+Map to observables, complete previous observable and emit values
+<br>
+SwtichMap emit, click to restart counter: {{this.dataSwitchMap}}
+<br>
+<h3>Tap</h3>
+Perform action transparently
+<br>
+data before: {{this.dataTapBefore}}
+<br>
+data after: {{this.dataTapAfter}}
+<br>
+<h3>Share</h3>
+<br>
+Share source among multiple subscibers
+<br>
+see console logs:
+<br>
+observable call twice but only one log is called
+<br>
+<h3>ShareRelay</h3>
+<br>
+like Share operator but for non async calls
