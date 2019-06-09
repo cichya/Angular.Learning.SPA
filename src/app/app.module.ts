@@ -8,6 +8,8 @@ import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 
 import * as fromApp from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { NgrxEffects } from './features/ngrx/store/ngrx.effects';
 
 @NgModule({
    declarations: [
@@ -18,7 +20,8 @@ import * as fromApp from './store/app.reducer';
       BrowserModule,
       CoreModule,
       SharedModule,
-      StoreModule.forRoot(fromApp.appReducer)
+      StoreModule.forRoot(fromApp.appReducer),
+      EffectsModule.forRoot([NgrxEffects])
    ],
    providers: [],
    bootstrap: [

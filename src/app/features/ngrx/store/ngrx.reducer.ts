@@ -6,7 +6,7 @@ export interface State {
 }
 
 const initialState: State = {
-  data: [{ id: 1, value: 'Initial value'}]
+  data: []
 };
 
 export function ngrxReducer(
@@ -14,6 +14,11 @@ export function ngrxReducer(
   action: NgrxActions.NgrxActions
 ) {
   switch (action.type) {
+    case NgrxActions.SET_DATA:
+      return {
+        ...state,
+        data: [...action.payload]
+      };
     case NgrxActions.ADD_DATA:
       return {
         ...state,
